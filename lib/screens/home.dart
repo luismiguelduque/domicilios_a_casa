@@ -48,6 +48,19 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Positioned(
+                bottom: -size.height*0.3,
+                right: -size.width*0.4,
+                child: Container(
+                  transform: Matrix4.rotationZ(-10 * pi / 80),
+                  height: size.height*0.5,
+                  width: size.width*0.8,
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(224, 224, 224, 1),
+                    borderRadius: BorderRadius.circular(150)
+                  ),
+                ),
+              ),
+              Positioned(
                 top: 50,
                 child: Container(
                   height: size.height-50,
@@ -121,7 +134,7 @@ class _HomeState extends State<Home> {
   Widget _listItem(Company company){
     return GestureDetector(
       onTap: (){
-        Navigator.of(context).pushNamed('detail');
+        Navigator.of(context).pushNamed('detail', arguments: company);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 8),

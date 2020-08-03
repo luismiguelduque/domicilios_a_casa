@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+//import 'package:flutter_launch/flutter_launch.dart';
+
 class CustomDrawer extends StatelessWidget {
+
+  void whatsAppOpen() async {
+    //await FlutterLaunch.launchWathsApp(phone: "+584147252165", message: "Hello");
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -38,7 +45,7 @@ class CustomDrawer extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                   child: Column(
                     children: [
-                      _item(context, "Anuncia tu negocio", "about", Icons.markunread, null, true),
+                      _item(context, "Anuncia tu negocio", "about", Icons.message, null, true),
                       _item(context, "Acerca de nosotros", "about", Icons.info_outline, null, true),
                     ],
                   ),
@@ -54,7 +61,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _item(BuildContext context, String text, String route, IconData leading, IconData trailing, bool isBottom){
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, route);
+        (text == "Anuncia tu negocio") ? whatsAppOpen() : Navigator.pushNamed(context, route);
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical:8),

@@ -10,19 +10,42 @@ class Companies with ChangeNotifier {
   List<Company> _items = [
     Company(
       id: "1",
-      name: "Bodega de la esquina",
-      description: "Bodega de la esquina",
+      name: "Tu tienda de la esquina",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
       siteUrl: "https://www.google.com",
       address: "Calle 4-58 Medellin Colombia",
-      imageUrl: "https://media-cdn.tripadvisor.com/media/photo-s/12/22/03/09/justo-ceres.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKmuPHfzrRNcOoedJb1D0LFxv02stkZ90F3g&usqp=CAU",
+      phone: "+57 3241574854",
+      email: "tutiendadelaesquina@gmail.com",
+      tags: [
+        "Viveres", "Confites", "Frutas", "Verduras", "Licores"
+      ]
     ),
     Company(
       id: "1",
       name: "Supermercado Demi",
-      description: "Supermercado Demi",
+      description: "commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       siteUrl: "https://www.demi.com",
       address: "AV. Mariño 14-3 Medellin Colombia",
-      imageUrl: "https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto:low,w_1200/v1453501148/entity/image/file/007/000/56a2aa842f41f32f5b000007.jpg"
+      imageUrl: "https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto:low,w_1200/v1453501148/entity/image/file/007/000/56a2aa842f41f32f5b000007.jpg",
+      phone: "+57 542541254854",
+      email: "demicuadra@gmail.com",
+      tags: [
+        "Viveres", "Confites", "Frutas", "Verduras", "Licores", "Farmacia", "Ferretería", "Carpintería", "Electicidad", "Autopartes"
+      ]
+    ),
+    Company(
+      id: "1",
+      name: "Hambuguesas Doña Carmen",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      siteUrl: "https://www.demi.com",
+      address: "Barrio La calera, calle 4-9 Medellin Colombia",
+      imageUrl: "https://media-cdn.tripadvisor.com/media/photo-s/12/22/03/09/justo-ceres.jpg",
+      phone: "+57 14524574854",
+      email: "donacarmen@gmail.com",
+      tags: [
+        "Hamburguesas", "HotDogs", "Pizzas", "Licores", "A la carta", "Batidos"
+      ]
     ),
   ];
 

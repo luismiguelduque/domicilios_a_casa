@@ -6,6 +6,9 @@ class Company {
   final String siteUrl;
   final String imageUrl;
   final String address;
+  final String phone;
+  final String email;
+  final List tags;
 
   Company({
     this.id,
@@ -14,6 +17,9 @@ class Company {
     this.siteUrl,
     this.imageUrl,
     this.address,
+    this.phone,
+    this.email,
+    this.tags
   });
 
 }
