@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:provider/provider.dart';
+
+import '../models/company.dart';
+import '../providers/companies.dart';
 import '../widgets/custom_drawer.dart';
 
 class Home extends StatefulWidget {
@@ -11,9 +15,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    Provider.of<Companies>(context, listen: false).getCompanies();
+    super.initState();
+  }
    
   @override
   Widget build(BuildContext context) {
+    final companiesProvider = Provider.of<Companies>(context);
+    final companies = companiesProvider.items;
     final size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
@@ -54,21 +66,14 @@ class _HomeState extends State<Home> {
                       ),
                       SizedBox(height: 10,),
                       Expanded(
-                        child: ListView(
-                          children: [
-                            
-                            SizedBox(height: 5,),
-                            _listItem(),
-                            _listItem(),
-                            _listItem(),
-                            _listItem(),
-                            _listItem(),
-                            _listItem(),
-                            _listItem(),
-                            SizedBox(height: 50,),
-                          ],
+                        child: ListView.builder(
+                          itemCount: companies.length,
+                          itemBuilder: (ctx, index){
+                            return _listItem(companies[index]);
+                          },
                         ),
                       ),
+                      SizedBox(height: 50,),
                     ],
                   ),
                 ),
@@ -113,7 +118,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _listItem(){
+  Widget _listItem(Company company){
     return GestureDetector(
       onTap: (){
         Navigator.of(context).pushNamed('detail');
@@ -135,12 +140,14 @@ class _HomeState extends State<Home> {
         ),
         child: ListTile(
           leading: Image(
-            image: NetworkImage("https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto:low,w_1200/v1453501148/entity/image/file/007/000/56a2aa842f41f32f5b000007.jpg"),
+            image: NetworkImage(company.imageUrl),
           ),
-          title: Text("Demi", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
-          subtitle: Text("supermercadodemi.com", style: TextStyle(color: Theme.of(context).primaryColor),),
+          title: Text(company.name, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
+          subtitle: Text(company.siteUrl, style: TextStyle(color: Theme.of(context).primaryColor),),
           trailing: IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context).pushNamed('detail', arguments: company);
+            },
             icon: Icon(Icons.arrow_forward, color: Theme.of(context).primaryColor, size: 28,),
           ),
         ),

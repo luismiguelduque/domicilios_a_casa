@@ -1,5 +1,6 @@
 class Company {
   
+  final String id;
   final String name;
   final String description;
   final String siteUrl;
@@ -7,6 +8,7 @@ class Company {
   final String address;
 
   Company({
+    this.id,
     this.name,
     this.description,
     this.siteUrl,
