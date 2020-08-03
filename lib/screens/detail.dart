@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import '../models/company.dart';
 
 class Detail extends StatelessWidget {
@@ -13,7 +15,7 @@ class Detail extends StatelessWidget {
       ),
       floatingActionButton: GestureDetector(
         onTap: (){},
-        child: _buttonVisitWebSite(context, ''),
+        child: _buttonVisitWebSite(context, company[0].siteUrl),
       ),
       body: SafeArea(
         child: Container(
@@ -32,7 +34,7 @@ class Detail extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: company[0].tags.map((item) => _listTag(context, item)).toList(),
               ),
-              SizedBox(height: 70.0,),
+              SizedBox(height: 90.0,),
             ],
           ),
         
@@ -132,39 +134,52 @@ class Detail extends StatelessWidget {
   }
 
   Widget _buttonVisitWebSite(BuildContext context, String url) {
-    return Container(
-      width: 150.0,
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(25.0),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(100, 0, 0, 0),
-            blurRadius: 8, 
-            spreadRadius: 2,
-            offset: Offset(3, 3)
-          )
-        ]
-      ),
-      child: Row(
-        children: <Widget>[
-          Icon(
-            Icons.open_in_browser, 
-            color: Colors.white,
-            size: 28.0,
-          ),
-          SizedBox(width: 5.0),
-          Text(
-            'Ir al sitio',
-            style: TextStyle(
+    return GestureDetector(
+      onTap: (){
+        _launchURL(url);
+      },
+      child: Container(
+        width: 150.0,
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(25.0),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(100, 0, 0, 0),
+              blurRadius: 8, 
+              spreadRadius: 2,
+              offset: Offset(3, 3)
+            )
+          ]
+        ),
+        child: Row(
+          children: <Widget>[
+            Icon(
+              Icons.open_in_browser, 
               color: Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: 20.0,
+              size: 28.0,
             ),
-          ),
-        ],
+            SizedBox(width: 5.0),
+            Text(
+              'Ir al sitio',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 20.0,
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
